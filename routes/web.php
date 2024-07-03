@@ -1,30 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
-use App\Http\Controllers\admin\AdminLoginController;
-use App\Http\Controllers\admin\BrandController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\CompanyController;
-use App\Http\Controllers\admin\DiscountCodeController;
-use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\admin\OrderController;
-use App\Http\Controllers\admin\PageController;
-use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\admin\ProductImageController;
-use App\Http\Controllers\admin\ProductSubCategoryController;
-use App\Http\Controllers\admin\SettingController;
-use App\Http\Controllers\admin\ShippingController;
-use App\Http\Controllers\admin\SubCategoryController;
-use App\Http\Controllers\admin\TempImagesController;
-use App\Http\Controllers\admin\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopContrroller;
 use App\Http\Controllers\SocialiteController;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\PageController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\BenefitController;
+use App\Http\Controllers\admin\CompanyController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ShippingController;
+use App\Http\Controllers\admin\AdminLoginController;
+use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\admin\SubCategoryController;
+use App\Http\Controllers\admin\DiscountCodeController;
+use App\Http\Controllers\admin\ProductImageController;
+use App\Http\Controllers\admin\ProductSubCategoryController;
 
 Route::get('/', [FrontController::class,'index'])->name('front.home');
 Route::get('/shop/{categorySlug?}/{subCategorySlug?}', [ShopContrroller::class,'index'])->name('front.shop');
@@ -135,6 +137,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.delete');
 
+        Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
+        Route::get('/sliders/create', [SliderController::class, 'create'])->name('sliders.create');
+        Route::post('/sliders', [SliderController::class, 'store'])->name('sliders.store');
+        Route::get('/sliders/{slider}/edit', [SliderController::class, 'edit'])->name('sliders.edit');
+        Route::put('/sliders/{slider}', [SliderController::class, 'update'])->name('sliders.update');
+        Route::delete('/sliders/{slider}', [SliderController::class, 'destroy'])->name('sliders.delete');
+
         // Sub Category Routes
         Route::get('/sub-categories', [SubCategoryController::class, 'index'])->name('sub-categories.index');
         Route::get('/sub-categories/create', [SubCategoryController::class, 'create'])->name('sub-categories.create');
@@ -143,6 +152,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/sub-categories/{subCategory}', [SubCategoryController::class, 'update'])->name('sub-categories.update');
         Route::delete('/sub-categories/{subCategory}', [SubCategoryController::class, 'destroy'])->name('sub-categories.delete');
 
+        Route::get('/benefits', [BenefitController::class, 'index'])->name('benefits.index');
+        Route::get('/benefits/create', [BenefitController::class, 'create'])->name('benefits.create');
+        Route::post('/benefits', [BenefitController::class, 'store'])->name('benefits.store');
+        Route::get('/benefits/{subCategory}/edit', [BenefitController::class, 'edit'])->name('benefits.edit');
+        Route::put('/benefits/{subCategory}', [BenefitController::class, 'update'])->name('benefits.update');
+        Route::delete('/benefits/{subCategory}', [BenefitController::class, 'destroy'])->name('benefits.delete');
 
         // Brands Routes
         Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');

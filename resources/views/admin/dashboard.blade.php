@@ -8,9 +8,9 @@
             <div class="col-sm-6">
                 <h1>Dashboard</h1>
             </div>
-            <div class="col-sm-6 text-right">
+            {{-- <div class="col-sm-6 text-right">
             <a href="{{ route('admin.laporan.pdf') }}" class="btn btn-primary">Unduh Laporan PDF</a>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- /.container-fluid -->
@@ -20,7 +20,7 @@
     <!-- Default box -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4 col-6">
+            {{-- <div class="col-lg-4 col-6">
                 <div class="small-box card">
                     <div class="inner">
                         <h3>{{ $totalOrders }}</h3>
@@ -31,7 +31,7 @@
                     </div>
                     <a href="{{ route('orders.index') }}" class="small-box-footer text-dark">Info detail <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-lg-4 col-6">
                 <div class="small-box card">
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-6">
+            {{-- <div class="col-lg-4 col-6">
                 <div class="small-box card">
                     <div class="inner">
                         <h3>Rp.{{ NumberFormat($totalRevenue) }}</h3>
@@ -70,9 +70,9 @@
                     </div>
                     <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-4 col-6">
+            {{-- <div class="col-lg-4 col-6">
                 <div class="small-box card">
                     <div class="inner">
                         <h3>Rp.{{ NumberFormat($revenueThisMonth) }}</h3>
@@ -83,9 +83,9 @@
                     </div>
                     <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-4 col-6">
+            {{-- <div class="col-lg-4 col-6">
                 <div class="small-box card">
                     <div class="inner">
                         <h3>Rp.{{ NumberFormat($revenueLastMonth) }}</h3>
@@ -96,9 +96,9 @@
                     </div>
                     <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-4 col-6">
+            {{-- <div class="col-lg-4 col-6">
                 <div class="small-box card">
                     <div class="inner">
                         <h3>Rp.{{ NumberFormat($revenueLastThirtyDays) }}</h3>
@@ -109,7 +109,7 @@
                     </div>
                     <a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- /.card -->
@@ -119,6 +119,6 @@
 
 @section('customJs')
 <script>
-    console.log("Hello")
+    // console.log("Hello")
 </script>
 @endsection

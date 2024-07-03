@@ -8,31 +8,41 @@ use App\Models\Page;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Mail;
 
-function getCategories() {
-    return Category::orderBy('name','ASC')
+function getCategories()
+{
+    return Category::orderBy('name', 'ASC')
     ->with('sub_category')
-    ->orderBy('id','DESC')
-    ->where('status',1)
+    ->orderBy('id', 'DESC')
+    ->where('status', 1)
     ->where('showHome', 'Yes')
     ->get();
 }
 
 function Numberformat($number)
 {
-    return number_format($number, 0,',','.');
+    return number_format($number, 0, ',', '.');
 }
+
+
+function Substring($text, $total = 50)
+{
+    return substr($text, 0, $total) . "....";
+}
+
 
 function DateFormat($date, $format = "D-MM-Y HH:m:s")
 {
     return \Carbon\Carbon::parse($date)->isoFormat($format);
 }
 
-function getProductImage($productId) {
-    return ProductImage::where('product_id',$productId)->first();
+function getProductImage($productId)
+{
+    return ProductImage::where('product_id', $productId)->first();
 }
 
-function orderEmail($orderId, $userType="customer") {
-    $order = Order::where('id',$orderId)->with('items')->first();
+function orderEmail($orderId, $userType = "customer")
+{
+    $order = Order::where('id', $orderId)->with('items')->first();
 
     if ($userType == 'customer') {
         $subject = 'Terimakasih telah order';
@@ -49,15 +59,16 @@ function orderEmail($orderId, $userType="customer") {
     ];
 
     Mail::to($email)->send(new OrderEmail($mailData));
-   
+
 }
 
-function getCountryInfo($id) {
-    return Country::where('id',$id)->first();
+function getCountryInfo($id)
+{
+    return Country::where('id', $id)->first();
 }
 
-function staticPages() {
-    $pages = Page::orderBy('name','ASC')->get();
+function staticPages()
+{
+    $pages = Page::orderBy('name', 'ASC')->get();
     return $pages;
 }
-?>

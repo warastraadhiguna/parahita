@@ -2,56 +2,29 @@
 
 @section('content')
 <section class="section-1">
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
+
+            @foreach($sliders as $index => $slider)
+
+            <div class="carousel-item {{ $index == 0? 'active' : '' }}">
 
                 <picture>
-                    <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-1-m.jpg') }}" />
-                    <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-1.jpg') }}" />
-                    <img src="{{ asset('front-assets/images/carousel-1.jpg') }}" alt="" />
+                    {{-- <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-1.jpg') }}" />
+                    <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-1.jpg') }}" /> --}}
+                    <img src="{{ asset('front-assets/images/' . $slider->image) }}" alt="" />
                 </picture>
 
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
-                        
-                        <p class="mx-md-5 px-5">Dengan berbagai pilihan pakaian anak yang nyaman dan penuh gaya, si kecil akan selalu tampil ceria dan percaya diri dalam berbagai kesempatan.</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('front.shop') }}">Belanja Sekarang</a>
+                        <h1 class="display-4 text-white mb-3">{{ $slider->title }}</h1>
+                        <p class="mx-md-5 px-5">{{ $slider->description }}</p>
+                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('front.shop') }}">Lihat Katalog</a>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-
-                <picture>
-                    <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-2-m.jpg') }}" />
-                    <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-2.jpg') }}" />
-                    <img src="{{ asset('front-assets/images/carousel-2.jpg') }}" alt="" />
-                </picture>
-
-                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div class="p-3">
-                        <h1 class="display-4 text-white mb-3">Pakaian Wanita</h1>
-                        <p class="mx-md-5 px-5">Pakaian wanita hadir dalam berbagai gaya dan desain untuk memenuhi kebutuhan dan selera yang beragam.</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('front.shop') }}">Belanja Sekarang</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-
-                <picture>
-                    <source media="(max-width: 799px)" srcset="{{ asset('front-assets/images/carousel-3-m.jpg') }}" />
-                    <source media="(min-width: 800px)" srcset="{{ asset('front-assets/images/carousel-3.jpg') }}" />
-                    <img src="{{ asset('front-assets/images/carousel-3.jpg') }}" alt="" />
-                </picture>
-
-                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div class="p-3">
-                        <h1 class="display-4 text-white mb-3">Casual</h1>
-                        <p class="mx-md-5 px-5">Pakaian kasual wanita dirancang untuk kenyamanan sekaligus gaya dalam berbagai aktivitas sehari-hari.</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('front.shop') }}">Belanja Sekarang</a>
-                    </div>
-                </div>
-            </div>
+                            
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -66,30 +39,14 @@
 <section class="section-2">
     <div class="container">
         <div class="row">
+            @foreach ($benefits as $benefit)
             <div class="col-lg-3">
                 <div class="box shadow-lg">
-                    <div class="fa icon fa-check text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Produk Berkualitas</h5>
+                    <div class="fa icon {{ $benefit->icon }} text-primary m-0 mr-3"></div>
+                    <h2 class="font-weight-semi-bold m-0">{{ $benefit->name }}</h5>
                 </div>
-            </div>
-            <div class="col-lg-3 ">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-shipping-fast text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Gratis Pengiriman</h2>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-exchange-alt text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Pengembalian 14 Hari</h2>
-                </div>
-            </div>
-            <div class="col-lg-3 ">
-                <div class="box shadow-lg">
-                    <div class="fa icon fa-phone-volume text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Layanan 24 Jam</h5>
-                </div>
-            </div>
+            </div> 
+            @endforeach
         </div>
     </div>
 </section>
@@ -152,8 +109,11 @@
                         <div class="product-action">
                             @if($product->track_qty == 'Yes')
                                  @if($product->qty > 0)
-                                <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                     <i class="fa fa-shopping-cart"></i> Add To Cart
+                                </a> --}}
+                                <a class="btn btn-primary" href="javascript:void(0);">
+                                    Stok Ada
                                 </a>
                                 @else 
                                 <a class="btn btn-dark" href="javascript:void(0);">
@@ -162,9 +122,12 @@
                                 @endif
                            
                             @else
-                            <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                            {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>
+                            </a> --}}
+                                <a class="btn btn-primary" href="javascript:void(0);">
+                                    Stok Ada
+                                </a>
                             @endif
                         </div>
                     </div>
@@ -186,6 +149,13 @@
     </div>
 </section>
 
+    {{-- <img src="https://msib-6-commerce-app-02.educalab.id/front-assets/images/home-promo1.png" style="height:450px;"> --}}
+@if($company->youtube_id )
+<div class="video-container mt-5"> 
+    <iframe src="https://www.youtube.com/embed/{{ $company->youtube_id }}?autoplay=1&controls=0&modestbranding=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen frameborder="0" ></iframe>
+</div>
+    
+@endif  
 <section class="section-4 pt-5">
     <div class="container">
         <div class="section-title">
@@ -214,20 +184,25 @@
 
                         <div class="product-action">
                             @if($product->track_qty == 'Yes')
-                                 @if($product->qty > 0)
-                                <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                @if($product->qty > 0)
+                                {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                     <i class="fa fa-shopping-cart"></i> Add To Cart
-                                </a>
+                                </a> --}}
+                                <a class="btn btn-primary" href="javascript:void(0);">
+                                    Stok Ada
+                                </a>                                
                                 @else 
                                 <a class="btn btn-dark" href="javascript:void(0);">
                                     Stok Habis
                                 </a>
                                 @endif
-                           
                             @else
-                            <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                            {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>
+                            </a> --}}
+                                <a class="btn btn-primary" href="javascript:void(0);">
+                                    Stok Ada
+                                </a>                            
                             @endif
                         </div>
                     </div>

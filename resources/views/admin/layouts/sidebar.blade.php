@@ -20,10 +20,22 @@
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('company.index') }}" class="nav-link">
-									<i class="nav-icon fas fa-file-alt"></i>
+									<i class="nav-icon fas fa-building"></i>
 									<p>Company</p>
 								</a>
-							</li>							
+							</li>			
+							<li class="nav-item">
+								<a href="{{ route('sliders.index') }}" class="nav-link">
+									<i class="nav-icon fas fa-sliders-h"></i>
+									<p>Slider</p>
+								</a>
+							</li>								
+							<li class="nav-item">
+								<a href="{{ route('benefits.index') }}" class="nav-link">
+									<i class="nav-icon fas fa-plus-square"></i>
+									<p>Benefit</p>
+								</a>
+							</li>												
 							<li class="nav-item">
 								<a href="{{ route('categories.index') }}" class="nav-link">
 									<i class="nav-icon fas fa-file-alt"></i>
@@ -50,7 +62,7 @@
 									<p>Products</p>
 								</a>
 							</li>
-							<li class="nav-item">
+							{{-- <li class="nav-item">
 								<a href="{{ route('products.productRatings') }}" class="nav-link">
 									<i class="nav-icon fas fa-star"></i>
 									<p>Ratings</p>
@@ -69,13 +81,13 @@
 									<i class="nav-icon fas fa-shopping-bag"></i>
 									<p>Orders</p>
 								</a>
-							</li>
-							<li class="nav-item">
+							</li> --}}
+							{{-- <li class="nav-item">
 								<a href="{{ route('coupons.index') }}" class="nav-link">
 									<i class="nav-icon  fa fa-percent" aria-hidden="true"></i>
 									<p>Discount</p>
 								</a>
-							</li>
+							</li> --}}
 							<li class="nav-item">
 								<a href="{{ route('users.index') }}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>

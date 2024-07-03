@@ -42,7 +42,14 @@
                                         <input type="text" name="phone" id="phone" class="form-control" placeholder="phone" value="{{ $company->phone }}">
                                         <p class="error"></p>
                                     </div>
-                                </div>                                
+                                </div>         
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="youtube_id">Youtube ID</label>
+                                        <input type="text" name="youtube_id" id="youtube_id" class="form-control" placeholder="Youtube Id" value="{{ $company->youtube_id }}">
+                                        <p class="error"></p>
+                                    </div>
+                                </div>                                                         
                             </div>
                         </div>
                     </div>

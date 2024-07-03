@@ -113,7 +113,7 @@
 
             },
             error: function(jqXHR, exception) {
-                console.log("Ada yang tidak beres");
+                console.log(exception);
             }
         })
     });

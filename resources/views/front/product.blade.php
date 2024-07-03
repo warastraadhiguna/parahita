@@ -24,7 +24,9 @@
                         @if ($product->product_images)
                         @foreach ($product->product_images as $key => $productImage)
                         <div class="carousel-item {{ ($key == 0) ? 'active' : '' }}">
+                            <a href="{{ asset('uploads/product/large/'.$productImage->image) }}" data-toggle="lightbox" data-caption="{{ $product->title }}">
                             <img class="w-100 h-100" src="{{ asset('uploads/product/large/'.$productImage->image) }}" alt="Image">
+                            </a>
                         </div>
                         @endforeach
                         @endif
@@ -84,9 +86,12 @@
 
                     @if($product->track_qty == 'Yes')
                     @if($product->qty > 0)
-                    <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                    {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                         <i class="fa fa-shopping-cart"></i> &nbsp;Add To Cart
-                    </a>
+                    </a> --}}
+                        <a class="btn btn-primary" href="javascript:void(0);">
+                            Stok Ada
+                        </a>                    
                     @else
                     <a class="btn btn-dark" href="javascript:void(0);">
                         Stok Habis
@@ -94,9 +99,12 @@
                     @endif
 
                     @else
-                    <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                    {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                         <i class="fa fa-shopping-cart"></i> &nbsp;Add To Cart
-                    </a>
+                    </a> --}}
+                        <a class="btn btn-primary" href="javascript:void(0);">
+                            Stok Ada
+                        </a>
                     @endif
                 </div>
             </div>
@@ -261,9 +269,12 @@
 
                             @if($relProduct->track_qty == 'Yes')
                             @if($relProduct->qty > 0)
-                            <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $relProduct->id }});">
+                            {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $relProduct->id }});">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>
+                            </a> --}}
+                            <a class="btn btn-primary" href="javascript:void(0);">
+                                Stok Ada
+                            </a>                            
                             @else
                             <a class="btn btn-dark" href="javascript:void(0);">
                                 Stok Habis
@@ -271,8 +282,11 @@
                             @endif
 
                             @else
-                            <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $relProduct->id }});">
+                            {{-- <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $relProduct->id }});">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
+                            </a> --}}
+                            <a class="btn btn-primary" href="javascript:void(0);">
+                                Stok Ada
                             </a>
                             @endif
                         </div>

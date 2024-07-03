@@ -54,8 +54,9 @@
 		<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
 			<div class="col-lg-4 logo">
 				<a href="{{ route("front.home") }}" class="text-decoration-none">
-					<span class="h1 text-uppercase text-primary bg-custom px-2">Retail</span>
-					<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">X</span>
+					{{-- <span class="h1 text-uppercase text-primary bg-custom px-2">Retail</span>
+					<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">X</span> --}}
+				<img src="{{ asset('uploads/company/small/'.$company->image) }}" alt="{{ $company->name }}" class="img-responsive img-circle" style="opacity: .8;width:20%">					
 				</a>
 			</div>
 			<div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
@@ -77,12 +78,13 @@
 	</div>
 </div>
 
-<header class="bg-custom">
+<header class="bg-custom"  style="background-color:#575AA1;">
 	<div class="container">
 		<nav class="navbar navbar-expand-xl" id="navbar">
-			<a href="index.php" class="text-decoration-none mobile-logo">
-				<span class="h2 text-uppercase text-primary bg-dark">Retail</span>
-				<span class="h2 text-uppercase text-white px-2">X</span>
+			<a href="{{ route("front.home") }}" class="text-decoration-none mobile-logo">
+				{{-- <span class="h2 text-uppercase text-primary bg-dark">{{ $company->name }}</span> --}}
+				{{-- <span class="h2 text-uppercase text-white px-2">X</span> --}}
+				<img src="{{ asset('uploads/company/small/'.$company->image) }}" alt="{{ $company->name }}" class="img-responsive img-circle" style="opacity: .8;width:10%">	
 			</a>
 			<button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       			<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
@@ -90,9 +92,15 @@
     		</button>
     		<div class="collapse navbar-collapse" id="navbarSupportedContent">
       			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        			<!-- <li class="nav-item">
-          				<a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
-        			</li> -->
+        			<li class="nav-item">
+          				<a class="btn btn-green" aria-current="page" href="{{ route('front.home') }}" style="text-decoration: {{ Route::is("front.home")? 'underline' :'none' }};" title="Home">Home</a>
+        			</li>
+        			<li class="nav-item">
+          				<a class="btn btn-green" aria-current="page" href="{{ route('front.page', 'about-us') }}" title="Home"  style="text-decoration: {{  Request::is('page/about-us')? 'underline' :'none' }};">About</a>
+        			</li>			
+        			<li class="nav-item">
+          				<a class="btn btn-green" aria-current="page" href="{{ route('front.page', 'contact-us') }}" title="Home" style="text-decoration: {{ Request::is('page/contact-us')? 'underline' :'none' }};">Contact Us</a>
+        			</li>								
                     @if(getCategories()->isNotEmpty())
                     @foreach (getCategories() as $category)
                     <li class="nav-item dropdown">
@@ -111,11 +119,11 @@
                     @endif
       			</ul>      			
       		</div>   
-			<div class="right-nav py-0">
+			{{-- <div class="right-nav py-0">
 				<a href="{{ route('front.cart') }}" class="ml-3 d-flex pt-2">
 					<i class="fas fa-shopping-cart text-primary"></i>					
 				</a>
-			</div> 		
+			</div> 		 --}}
       	</nav>
   	</div>
 </header>
@@ -130,10 +138,9 @@
 			<div class="col-md-4">
 				<div class="footer-card">
 					<h3>Hubungi</h3>
-					<p>Layanan Retail X <br>
-					Jawa Tengah, Semarang, Indonesia <br>
-					retailx@gmail.com <br>
-					+6281229707932</p>
+					<p>Layanan {{ $company->name }} <br>
+					{{ $company->address }} <br>
+					{{ $company->phone }}</p>
 				</div>
 			</div>
 
@@ -146,11 +153,6 @@
 							<li><a href="{{ route('front.page',$page->slug) }}" title="{{ $page->name }}">{{ $page->name }}</a></li>
 							@endforeach
 						@endif
-						<!-- <li><a href="about-us.php" title="About">Tentang Kami</a></li>
-						<li><a href="contact-us.php" title="Contact Us">Hubungi Kami</a></li>						
-						<li><a href="#" title="Privacy">Privasi</a></li>
-						<li><a href="#" title="Privacy">Syarat & Ketentuan</a></li>
-						<li><a href="#" title="Privacy">Kebijakan Pengembalian Dana</a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -161,13 +163,13 @@
 					<ul>
 						<li><a href="{{ route('account.login') }}" title="Sell">Masuk</a></li>
 						<li><a href="{{ route('account.register') }}" title="Advertise">Daftar</a></li>
-						<li><a href="{{ route('account.orders') }}" title="Contact Us">Orderan Saya</a></li>						
+						{{-- <li><a href="{{ route('account.orders') }}" title="Contact Us">Orderan Saya</a></li>						 --}}
 					</ul>
 				</div>
 			</div>			
 		</div>
 	</div>
-	<div class="copyright-area">
+	{{-- <div class="copyright-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 mt-3">
@@ -177,7 +179,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 </footer>
 
 <!-- Wishlist Modal -->
@@ -205,7 +207,7 @@
 <script src="{{ asset('front-assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/ion.rangeSlider.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/custom.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
 <script>
 window.onscroll = function() {myFunction()};
 

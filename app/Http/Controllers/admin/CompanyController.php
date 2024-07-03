@@ -29,6 +29,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required',
+            'youtube_id' => 'nullable',
         ];
 
 
@@ -45,6 +46,7 @@ class CompanyController extends Controller
             $company->name = $request->name;
             $company->address = $request->address;
             $company->phone = $request->phone;
+            $company->youtube_id = $request->youtube_id;
 
             $company->save();
 
